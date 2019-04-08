@@ -437,3 +437,49 @@ We are ready to develop our application. Just a final step, we need to update ou
 ## Step 13: Starting to Development 🎉
 
 Everything is done! You can start to develop your next awesome React Native application now on 🚀
+
+## Bonus: Npm Script Aliases
+
+### React-Native Alias
+
+```bash
+yarn rn
+```
+
+`rn` alias for `react-native` allows to run react-native CLI command via locally installed react-native.
+
+```json
+// package.json
+
+"rn": "react-native",
+```
+
+### Run On Aliases
+
+```bash
+yarn ios
+yarn run ios
+
+yarn android
+yarn run android
+
+```
+
+`ios` and `android` aliases are helpful when we need to pass different parameter for our project and provides single point entry.
+
+```json
+// package.json
+
+"ios": "react-native run-ios",
+"android": "react-native run-android",
+```
+
+#### Example
+
+If we want to run our app on iPhone X as default and with scheme just specify that in the alias.
+
+```json
+// package.json
+
+"ios": "react-native run-ios --simulator 'iPhone X' --scheme 'Production'",
+```
