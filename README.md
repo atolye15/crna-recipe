@@ -354,6 +354,23 @@ Update the storybook script into `package.json` as follows:
 "storybook": "watch rnstl ./src --wait=100 | storybook start | react-native start --projectRoot=storybook"
 ```
 
+Add the following config into `package.json`:
+
+```json
+// package.json
+{
+  "config": {
+    "react-native-storybook-loader": {
+      "searchDir": [
+        "./src"
+      ],
+      "pattern": "**/*.stories.tsx",
+      "outputFile": "./storybook/storyLoader.js"
+    }
+  },
+}
+```
+
 Let's create an example story for our Button component.
 
 ```tsx
