@@ -249,7 +249,7 @@ src/
 
 We need to initialize the Storybook on our project.
 
-### Automatic setup
+### Automatic setup (Not recommended)
 
 ```bash
 npx -p @storybook/cli sb init --type react_native
