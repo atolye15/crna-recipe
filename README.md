@@ -98,7 +98,7 @@ yarn add tslint tslint-config-prettier tslint-consistent-codestyle --dev
 ```
 
 ```json
-# tslint.json
+// tslint.json
 
 {
   "defaultSeverity": "error",
