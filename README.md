@@ -138,6 +138,8 @@ yarn add react-native-testing-library --dev
 Add the following script into `package.json`
 
 ```json
+"test": "jest",
+"test:watch": "yarn test --watch",
 "coverage": "yarn run test --coverage"
 ```
 
