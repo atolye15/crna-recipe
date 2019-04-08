@@ -290,7 +290,7 @@ import '@storybook/addon-ondevice-notes/register';
 // ...
 ```
 
-Finally you need to create a file named `index.js` to expose StorybookUI in your app.
+After that, we need to create a file named `index.js` to expose StorybookUI in your app.
 
 ```js
 // .storybook/index.js
@@ -298,6 +298,12 @@ Finally you need to create a file named `index.js` to expose StorybookUI in your
 import StorybookUI from './storybook';
 
 export default StorybookUI;
+```
+
+Finally, Add the following script into `package.json`
+
+```json
+"storybook": "storybook start | react-native start --projectRoot=storybook",
 ```
 
 ### Loading stories dynamically
@@ -340,6 +346,12 @@ The file `storyLoader.js` that we imported above is an auto-generated file. We s
 
 # ...
 storybook/storyLoader.js
+```
+
+Update the storybook script into `package.json` as follows:
+
+```json
+"storybook": "watch rnstl ./src --wait=100 | storybook start | react-native start --projectRoot=storybook"
 ```
 
 Let's create an example story for our Button component.
