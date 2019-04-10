@@ -272,12 +272,12 @@ yarn
 
 After completing steps above you'll notice that storybook CLI have created `storybook` folder on your project's root folder. We'll customize this folder structure according to our use case.
 
-Firstly change folder name of `storybook` into `.storybook`. Afterwards change the name of `index.js` file in `.storybook` folder to `.storybook.js`.
+Firstly change folder name of `storybook` into `.storybook`. Afterwards change the name of `index.js` file in `.storybook` folder to `.storybook.ts`. Also change file extensions of other files from `js` to `ts`.
 
-After that, we create a new file named `index.js` to expose StorybookUI in your app.
+After that, we create a new file named `index.ts` to expose StorybookUI in your app.
 
 ```js
-// .storybook/index.js
+// .storybook/index.ts
 
 import StorybookUI from './storybook';
 
@@ -292,7 +292,7 @@ The stories for our app will be inside the `src/components` directory with the `
 yarn add react-native-storybook-loader --dev
 ```
 
-You need to update `storybook.js` as follows:
+You need to update `storybook.ts` as follows:
 
 > _Note: Do not forget to replace `%APP_NAME%` with your app name_
 
