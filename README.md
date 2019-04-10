@@ -1,6 +1,6 @@
 # React Native App Creation Recipe
 
-This is a step-by-step guide to create React Native app for Atolye15 projects. You can review [React Native App Starter](https://github.com/atolye15/rna-starter) project to see how your application looks like when all steps followed.
+This is a step-by-step guide to create React Native app for Atolye15 projects. You can review [React Native App Starter](https://github.com/atolye15/crna-starter) project to see how your application looks like when all steps followed.
 
 You will get an application which has;
 
