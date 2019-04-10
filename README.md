@@ -74,6 +74,8 @@ yarn add prettier --dev
 
 Also, we want to enable format on save on VSCode.
 
+> _React Native CLI adds `.vscode` to `.gitignore`, but we prefer not to ignore. So remove it from `.gitignore`._
+
 ```json
 // .vscode/settings.json
 
