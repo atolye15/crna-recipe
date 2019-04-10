@@ -342,7 +342,7 @@ The file `storyLoader.js` that we imported above is an auto-generated file. We s
 
 ...
 # Storybook
-storybook/storyLoader.js
+.storybook/storyLoader.js
 ```
 
 Update the storybook script into `package.json` as follows:
