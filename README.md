@@ -125,6 +125,7 @@ Finally, we need to enable prettier tslint integration on VSCode.
 // .vscode/settings.json
 
 {
+  // ...
   "prettier.tslintIntegration": true
 }
 ```
@@ -174,7 +175,7 @@ import 'react-native';
 import React from 'react';
 import { shallow } from 'react-native-testing-library';
 
-import App from '../App';
+import App from './App';
 
 it('renders correctly', () => {
   const comp = shallow(<App />);
@@ -184,6 +185,16 @@ it('renders correctly', () => {
 ```
 
 Also, verify coverage report with `yarn coverage`.
+
+When you run `yarn coverage`, a folder named `coverage` will be created in the root directory. This folder is auto-generated file. We should add it to `.gitignore`
+
+```text
+# .gitignore
+
+...
+# Test Coverage
+coverage
+```
 
 ## Step 7: Setting up config variables
 
@@ -255,7 +266,7 @@ We need to initialize the Storybook on our project. We'll use automatic setup wi
 npx -p @storybook/cli sb init --type react_native
 ```
 
-> _Warning: Probably after you have run the command above, you'll be asked to select a version. Cancel it and abort setup._
+> _Warning: Probably after you have run the command above, you'll be asked to select a version. Cancel it._
 
 Storybook CLI automatically installs `v5.0.x`, however `v5.0.x` is an unpublished version for react-native, therefore problems arise during installation. In order to avoid this problem we're going to fix our storybook packages in our `package.json` file to latest stable version `4.1.x`. (Check [this issue](https://github.com/storybooks/storybook/issues/5893) for more information.)
 
