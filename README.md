@@ -96,7 +96,7 @@ Finally, we update `package.json` with related format scripts.
 We want to have consistency in our codebase and also want to catch mistakes. So, we need to install tslint.
 
 ```bash
-yarn add tslint tslint-config-prettier tslint-consistent-codestyle --dev
+yarn add tslint tslint-react tslint-config-prettier tslint-consistent-codestyle --dev
 ```
 
 ```json
