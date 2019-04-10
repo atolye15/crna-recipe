@@ -310,7 +310,7 @@ You need to update `storybook.ts` as follows:
 > _Note: Do not forget to replace `%APP_NAME%` with your app name_
 
 ```js
-// .storybook/storybook.js
+// .storybook/storybook.ts
 
 import { AppRegistry } from 'react-native';
 import { getStorybookUI, configure } from '@storybook/react-native';
