@@ -78,7 +78,7 @@ Also, we want to enable format on save on VSCode.
 // .vscode/settings.json
 
 {
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": true
 }
 ```
 
@@ -247,59 +247,34 @@ src/
 
 ## Step 9: Adding Storybook
 
-We need to initialize the Storybook on our project.
-
-### Automatic setup (Not recommended)
+We need to initialize the Storybook on our project. We'll use automatic setup with a few edits:
 
 ```bash
 npx -p @storybook/cli sb init --type react_native
 ```
 
-### Manual setup
+> _Warning: Probably after you have run the command above, you'll be asked to select a version. Cancel it and abort setup._
+
+Storybook CLI automatically installs `v5.0.x`, however `v5.0.x` is an unpublished version for react-native, therefore problems arise during installation. In order to avoid this problem we're going to fix our storybook packages in our `package.json` file to latest stable version `4.1.x`. (Check [this issue](https://github.com/storybooks/storybook/issues/5893) for more information.)
+
+```json
+"@storybook/addon-actions": "^4.1.16",
+"@storybook/addon-links": "^4.1.16",
+"@storybook/addons": "^4.1.16",
+"@storybook/react-native": "^4.1.16",
+```
+
+thereafter in order to activate the changes and update `yarn.lock` file we'll run code below;
 
 ```bash
-yarn add @storybook/react-native --dev
+yarn
 ```
 
-After installing packages, we need to create a new directory named `.storybook` in our project root and create an `storybook.js` file as given below.
+After completing steps above you'll notice that storybook CLI have created `storybook` folder on your project's root folder. We'll customize this folder structure according to our use case.
 
-> *Note: Do not forget to replace `%APP_NAME%` with your app name*
+Firstly change folder name of `storybook` into `.storybook`. Afterwards change the name of `index.js` file in `.storybook` folder to `.storybook.js`.
 
-```js
-// .storybook/storybook.js
-
-import { AppRegistry } from 'react-native';
-import { getStorybookUI, configure } from '@storybook/react-native';
-
-import './rn-addons';
-
-// import stories
-configure(() => {
-  require('./stories');
-}, module);
-
-// Refer to https://github.com/storybooks/storybook/tree/master/app/react-native#start-command-parameters
-// To find allowed options for getStorybookUI
-const StorybookUIRoot = getStorybookUI({});
-
-// If you are using React Native vanilla write your app name here.
-// If you use Expo you can safely remove this line.
-AppRegistry.registerComponent('%APP_NAME%', () => StorybookUIRoot);
-
-export default StorybookUIRoot;
-```
-
-and then, create a file named `rn-addons.js` that you can use to include on device addons. You can see an example below.
-
-```js
-// .storybook/rn-addons.js
-
-import '@storybook/addon-ondevice-knobs/register';
-import '@storybook/addon-ondevice-notes/register';
-// ...
-```
-
-After that, we need to create a file named `index.js` to expose StorybookUI in your app.
+After that, we create a new file named `index.js` to expose StorybookUI in your app.
 
 ```js
 // .storybook/index.js
@@ -309,19 +284,17 @@ import StorybookUI from './storybook';
 export default StorybookUI;
 ```
 
-Finally, Add the following script into `package.json`
+We finished the storybook installation but we are not done yet;
 
-```json
-"storybook": "storybook start | react-native start --projectRoot=storybook",
+The stories for our app will be inside the `src/components` directory with the `.stories.tsx` extension.The React Native packager resolves all the imports at build-time, so it's not possible to load modules dynamically. we need to use a third party loader [react-native-storybook-loader](https://github.com/elderfo/react-native-storybook-loader) to automatically generate the import statements for all stories.
+
+```bash
+yarn add react-native-storybook-loader --dev
 ```
-
-### Loading stories dynamically
-
-The stories for our app will be inside the `src/components` directory with the `.stories.js` extension.The React Native packager resolves all the imports at build-time, so it’s not possible to load modules dynamically. we need to use a third party loader [react-native-storybook-loader](https://github.com/elderfo/react-native-storybook-loader) to automatically generate the import statements for all stories.
 
 You need to update `storybook.js` as follows:
 
-> *Note: Do not forget to replace `%APP_NAME%` with your app name*
+> _Note: Do not forget to replace `%APP_NAME%` with your app name_
 
 ```js
 // .storybook/storybook.js
@@ -353,14 +326,15 @@ The file `storyLoader.js` that we imported above is an auto-generated file. We s
 ```text
 # .gitignore
 
-# ...
+...
+# Storybook
 storybook/storyLoader.js
 ```
 
 Update the storybook script into `package.json` as follows:
 
 ```json
-"storybook": "watch rnstl ./src --wait=100 | storybook start | react-native start --projectRoot=storybook"
+"storybook": "watch rnstl ./src --wait=100 | storybook start | yarn start --projectRoot .storybook --watchFolders $PWD"
 ```
 
 Add the following config into `package.json`:
@@ -370,14 +344,18 @@ Add the following config into `package.json`:
 {
   "config": {
     "react-native-storybook-loader": {
-      "searchDir": [
-        "./src"
-      ],
+      "searchDir": ["./src"],
       "pattern": "**/*.stories.tsx",
-      "outputFile": "./storybook/storyLoader.js"
+      "outputFile": "./.storybook/storyLoader.js"
     }
-  },
+  }
 }
+```
+
+Finally we install type definitions for storybook since we're using Typescript.
+
+```bash
+yarn add @types/storybook__react-native --dev
 ```
 
 Let's create an example story for our Button component.
@@ -386,7 +364,7 @@ Let's create an example story for our Button component.
 // src/components/Button/Button.stories.tsx
 
 import React from 'react';
-import { storiesOf } from '@storybook/react';
+import { storiesOf } from '@storybook/react-native';
 
 import Button from './Button';
 
