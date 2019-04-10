@@ -30,7 +30,7 @@ You can reference the react native offical documentation
 XCode needed to be installed to run app in ios. There is an alias script to run app easily in ios simulator
 
 ```bash
-yarn run-ios
+yarn ios
 ```
 
 This is alias for `react-native run-ios` you can pass other options as need.
@@ -40,7 +40,7 @@ This is alias for `react-native run-ios` you can pass other options as need.
 Android studio to be installed to run app in android. Before run the app, start a virtual device from "Android Virtual Device Manager". When you have running android virtuald device run the following command.
 
 ```bash
-yarn run-android
+yarn android
 ```
 
 This is alias for `react-native run-android`. You can pass other options as need.
