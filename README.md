@@ -513,3 +513,7 @@ If we want to run our app on iPhone X as default and with scheme just specify th
 
 "ios": "yarn rn run-ios --simulator 'iPhone X' --scheme 'Production'",
 ```
+
+## Related
+
+* [cra-recipe](https://github.com/atolye15/cra-recipe/) - CRA Recipe
