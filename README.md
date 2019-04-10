@@ -480,7 +480,7 @@ yarn rn
 ```json
 // package.json
 
-"rn": "react-native",
+"rn": "node node_modules/react-native/local-cli/cli.js",
 ```
 
 ### Run On Aliases
@@ -499,8 +499,8 @@ yarn run android
 ```json
 // package.json
 
-"ios": "react-native run-ios",
-"android": "react-native run-android",
+"ios": "yarn rn run-ios",
+"android": "yarn rn run-android",
 ```
 
 #### Example
@@ -510,5 +510,5 @@ If we want to run our app on iPhone X as default and with scheme just specify th
 ```json
 // package.json
 
-"ios": "react-native run-ios --simulator 'iPhone X' --scheme 'Production'",
+"ios": "yarn rn run-ios --simulator 'iPhone X' --scheme 'Production'",
 ```
