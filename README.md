@@ -352,7 +352,7 @@ Add the following config into `package.json`:
 }
 ```
 
-Finally we install type definitions for storybook since we're using Typescript.
+Lastly, because we use typescript in the project, we need to install the type definition for storybook.
 
 ```bash
 yarn add @types/storybook__react-native --dev
