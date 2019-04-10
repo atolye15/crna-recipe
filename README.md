@@ -26,6 +26,7 @@ You will get an application which has;
 * [Step 11: Github Settings](#step-11-github-settings)
 * [Step 12 Final Touches](#step-12-final-touches)
 * [Step 13: Starting to Development <g-emoji class="g-emoji" alias="tada" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f389.png">🎉</g-emoji>](#step-13-starting-to-development-)
+* [Bonus: Npm Script Aliases](#bonus-npm-script-aliases)
 
 ## Step 1: Installing the React Native CLI
 
