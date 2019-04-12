@@ -504,6 +504,16 @@ yarn run android
 "android": "yarn rn run-android",
 ```
 
+#### Example
+
+If we want to run our app on iPhone X as default and with scheme just specify that in the alias.
+
+```json
+// package.json
+
+"ios": "yarn rn run-ios --simulator 'iPhone X' --scheme 'Production'",
+```
+
 ### Clear React Native Cache Alias
 
 ```bash
@@ -514,16 +524,6 @@ yarn clear-rn-cache
 // package.json
 
 "clear-rn-cache": "watchman watch-del-all && rm -rf $TMPDIR/react-* && rm -rf $TMPDIR/metro* && rm -rf $TMPDIR/haste-*"
-```
-
-#### Example
-
-If we want to run our app on iPhone X as default and with scheme just specify that in the alias.
-
-```json
-// package.json
-
-"ios": "yarn rn run-ios --simulator 'iPhone X' --scheme 'Production'",
 ```
 
 ## Related
