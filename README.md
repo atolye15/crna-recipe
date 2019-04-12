@@ -51,6 +51,7 @@ react-native init AwesomeProject --template typescript
 We want to keep type safety as strict as possibble. In order to do that, we update `tsconfig.json` with the settings below.
 
 ```json
+"strict": true,
 "noImplicitAny": true,
 "noImplicitReturns": true,
 ```
