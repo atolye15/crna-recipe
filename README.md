@@ -116,8 +116,9 @@ yarn add tslint tslint-react tslint-config-prettier tslint-consistent-codestyle 
 We need to update `package.json` for TSLint scripts.
 
 ```json
-"format": "prettier --write 'src/**/*.{ts,tsx}' && tslint --fix --project .",
-"lint": "tsc && tslint --project tsconfig.json"
+"lint:ts": "tslint --project tsconfig.json 'src/**/*.{ts,tsx}'",
+"lint": "tsc && yarn lint:ts",
+"format": "prettier --write 'src/**/*.{ts,tsx}' && yarn lint:ts --fix",
 ```
 
 Finally, we need to enable prettier tslint integration on VSCode.
@@ -150,20 +151,25 @@ Add the following script into `package.json`
 and then update `jest.config.js` as follows to complete jest configuration.
 
 ```js
-"collectCoverageFrom": [
-  "src/**/*.{ts,tsx}",
-  "!src/index.tsx",
-  "!src/setupTests.ts",
-  "!src/components/**/index.{ts,tsx}",
-  "!src/components/**/*.stories.{ts,tsx}"
-],
-"coverageThreshold": {
-  "global": {
-    "branches": 80,
-    "functions": 80,
-    "lines": 80,
-    "statements": 80
-  }
+{
+  // ... ,
+  collectCoverageFrom: [
+    'src/**/*.{ts,tsx}',
+    '!src/index.tsx',
+    '!src/setupTests.ts',
+    '!src/components/**/index.{ts,tsx}',
+    '!src/**/*.stories.{ts,tsx}',
+    '!src/**/*.style.ts',
+    '!src/styles/**/*',
+  ],
+  coverageThreshold: {
+    global: {
+      branches: 80,
+      functions: 80,
+      lines: 80,
+      statements: 80,
+    },
+  },
 }
 ```
 
@@ -366,6 +372,9 @@ Add the following config into `package.json`:
 }
 ```
 
+> _Warning: If you get typescript errors related with the storybook, you should disable `isolatedModules` in `tsconfig.json`_
+
+
 Lastly, because we use typescript in the project, we need to install the type definition for storybook.
 
 ```bash
@@ -428,14 +437,14 @@ jobs:
       - attach_workspace:
           at: ~/repo
       - run:
+          name: Generate Storyloader
+          command: yarn rnstl
+      - run:
           name: Lint
           command: yarn lint
       - run:
           name: Format
           command: yarn format:check
-      - run:
-          name: Test
-          command: yarn test
       - run:
           name: Coverage
           command: yarn coverage
