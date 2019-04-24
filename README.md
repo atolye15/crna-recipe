@@ -152,6 +152,9 @@ yarn add eslint eslint-config-airbnb-base eslint-config-prettier eslint-plugin-e
         ]
       }
     ],
+    "react-native/no-unused-styles": "error",
+    "react-native/no-inline-styles": "error",
+    "react-native/no-color-literals": "error",
     "react/jsx-one-expression-per-line": "off",
     "@typescript-eslint/explicit-member-accessibility": "off",
     "prettier/prettier": ["error"]
@@ -166,7 +169,9 @@ yarn add eslint eslint-config-airbnb-base eslint-config-prettier eslint-plugin-e
     {
       "files": ["*.stories.tsx", "*.test.tsx"],
       "rules": {
-        "@typescript-eslint/no-explicit-any": "off"
+        "@typescript-eslint/no-explicit-any": "off",
+        "react-native/no-color-literals": "off",
+        "react-native/no-inline-styles": "off"
       }
     }
   ]
