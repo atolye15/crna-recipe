@@ -98,7 +98,7 @@ Finally, we update `package.json` with related format scripts.
 We want to have consistency in our codebase and also want to catch mistakes. So, we need to install ESLint.
 
 ```bash
-yarn add eslint eslint-config-airbnb-base eslint-config-prettier eslint-plugin-eslint-comments eslint-plugin-import eslint-plugin-jest eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react eslint-plugin-react-native  @typescript-eslint/eslint-plugin @typescript-eslint/parser --dev
+yarn add eslint eslint-config-airbnb eslint-config-prettier eslint-plugin-eslint-comments eslint-plugin-import eslint-plugin-jest eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react eslint-plugin-react-native @typescript-eslint/eslint-plugin @typescript-eslint/parser --dev
 ```
 
 ```json
