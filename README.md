@@ -17,7 +17,7 @@ You will get an application which has;
 * [Step 2: Creating a new app](#step-2-creating-a-new-app)
 * [Step 3: Make TypeScript more strict](#step-3-make-typescript-more-strict)
 * [Step 4: Installing Prettier](#step-4-installing-prettier)
-* [Step 5: Installing TSLint](#step-5-installing-tslint)
+* [Step 5: Installing ESLint](#step-5-installing-eslint)
 * [Step 6: Setting up our test environment](#step-6-setting-up-our-test-environment)
 * [Step 7: Setting up config variables](#step-7-setting-up-config-variables)
 * [Step 8: Organizing Folder Structure](#step-8-organizing-folder-structure)
@@ -93,43 +93,127 @@ Finally, we update `package.json` with related format scripts.
 "format:check": "prettier -c 'src/**/*.{ts,tsx}'"
 ```
 
-## Step 5: Installing TSLint
+## Step 5: Installing ESLint
 
-We want to have consistency in our codebase and also want to catch mistakes. So, we need to install tslint.
+We want to have consistency in our codebase and also want to catch mistakes. So, we need to install ESLint.
 
 ```bash
-yarn add tslint tslint-react tslint-config-prettier tslint-consistent-codestyle --dev
+yarn add eslint eslint-config-airbnb-base eslint-config-prettier eslint-plugin-eslint-comments eslint-plugin-import eslint-plugin-jest eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react eslint-plugin-react-native  @typescript-eslint/eslint-plugin @typescript-eslint/parser --dev
 ```
 
 ```json
-// tslint.json
+// .eslintrc
 
 {
-  "defaultSeverity": "error",
-  "extends": ["tslint-react", "tslint-config-prettier", "tslint-consistent-codestyle"],
-  "jsRules": {},
-  "rules": {},
-  "rulesDirectory": [],
-  "linterOptions": {}
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "airbnb",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "plugin:eslint-comments/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:jest/recommended"
+  ],
+  "env": {
+    "browser": true,
+    "jest": true,
+    "react-native/react-native": true
+  },
+  "plugins": [
+    "react",
+    "react-native",
+    "@typescript-eslint",
+    "jsx-a11y",
+    "import",
+    "prettier",
+    "jest",
+    "eslint-comments"
+  ],
+  "rules": {
+    "@typescript-eslint/indent": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-use-before-define": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "react/prop-types": "off",
+    "react/button-has-type": "off",
+    "no-use-before-define": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "storybook/**/*.{ts,tsx,js}",
+          "config-overrides.js",
+          "src/setupTests.ts",
+          "src/components/**/*.stories.tsx",
+          "src/styles/**/*.stories.tsx",
+          "src/**/*.test.{ts,tsx}"
+        ]
+      }
+    ],
+    "react-native/no-unused-styles": "error",
+    "react-native/no-inline-styles": "error",
+    "react-native/no-color-literals": "error",
+    "react/jsx-one-expression-per-line": "off",
+    "@typescript-eslint/explicit-member-accessibility": "off",
+    "prettier/prettier": ["error"]
+  },
+  "overrides": [
+    {
+      "files": ["*.style.ts"],
+      "rules": {
+        "@typescript-eslint/camelcase": "off"
+      }
+    },
+    {
+      "files": ["*.stories.tsx", "*.test.tsx"],
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off",
+        "react-native/no-color-literals": "off",
+        "react-native/no-inline-styles": "off"
+      }
+    }
+  ]
 }
 ```
 
-We need to update `package.json` for TSLint scripts.
+also ignore some files/folders;
 
-```json
-"lint:ts": "tslint --project tsconfig.json 'src/**/*.{ts,tsx}'",
-"lint": "tsc && yarn lint:ts",
-"format": "prettier --write 'src/**/*.{ts,tsx}' && yarn lint:ts --fix",
+```text
+# .eslintignore
+
+ios
+android
+build
+coverage
+
+# Storybook
+storybook/storyLoader.js
 ```
 
-Finally, we need to enable prettier tslint integration on VSCode.
+We need to update `package.json` for ESLint scripts.
+
+```json
+"lint:eslint": "eslint 'src/**/*.{ts,tsx}'",
+"lint:ts": "tsc && yarn lint:eslint",
+"lint": "yarn lint:ts",
+"format": "prettier --write 'src/**/*.{ts,tsx}' && yarn lint:eslint --fix",
+```
+
+Finally, we need to enable prettier ESLint integration on VSCode.
 
 ```json
 // .vscode/settings.json
 
 {
-  // ...
-  "prettier.tslintIntegration": true
+  // ... ,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    { "language": "typescript", "autoFix": true },
+    { "language": "typescriptreact", "autoFix": true }
+  ]
 }
 ```
 
