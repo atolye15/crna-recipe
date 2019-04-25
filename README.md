@@ -48,12 +48,14 @@ react-native init AwesomeProject --template typescript
 
 ## Step 3: Make TypeScript more strict
 
-We want to keep type safety as strict as possibble. In order to do that, we update `tsconfig.json` with the settings below.
+We want to keep type safety as strict as possibble. In order to do that, we update `tsconfig.json` with the settings below. Also we prefer to disable `isolatedModules` and activate `skipLibCheck`.
 
 ```json
 "strict": true,
 "noImplicitAny": true,
 "noImplicitReturns": true,
+"skipLibCheck": true,
+"isolatedModules": false,
 ```
 
 ## Step 4: Installing Prettier
@@ -98,7 +100,7 @@ Finally, we update `package.json` with related format scripts.
 We want to have consistency in our codebase and also want to catch mistakes. So, we need to install ESLint.
 
 ```bash
-yarn add eslint eslint-config-airbnb-base eslint-config-prettier eslint-plugin-eslint-comments eslint-plugin-import eslint-plugin-jest eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react eslint-plugin-react-native  @typescript-eslint/eslint-plugin @typescript-eslint/parser --dev
+yarn add eslint eslint-config-airbnb eslint-config-prettier eslint-plugin-eslint-comments eslint-plugin-import eslint-plugin-jest eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react eslint-plugin-react-native @typescript-eslint/eslint-plugin @typescript-eslint/parser --dev
 ```
 
 ```json
@@ -436,6 +438,12 @@ The file `storyLoader.js` that we imported above is an auto-generated file. We s
 storybook/storyLoader.js
 ```
 
+After you install storybook loader, you should run the following command once to avoid typescript errors.
+
+```bash
+yarn rnstl
+```
+
 Update the storybook script into `package.json` as follows:
 
 ```json
@@ -458,7 +466,6 @@ Add the following config into `package.json`:
 ```
 
 > _Warning: If you get typescript errors related with the storybook, you should disable `isolatedModules` in `tsconfig.json`_
-
 
 Lastly, because we use typescript in the project, we need to install the type definition for storybook.
 
