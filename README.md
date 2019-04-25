@@ -287,7 +287,7 @@ yarn
 
 After completing steps above you'll notice that storybook CLI have created `storybook` folder on your project's root folder. We'll customize this folder structure according to our use case.
 
-Firstly change the name of `index.js` file in `storybook` folder to `storybook.ts`. Also change file extensions of other files from `js` to `ts`.
+Firstly change the name of `index.js` file in `storybook` folder to `storybook.ts`. Also change file extensions of other files from `js` to `ts`, except the `addons.js` file (https://github.com/storybooks/storybook/issues/3970).
 
 After that, we create a new file named `index.ts` to expose StorybookUI in your app.
 
