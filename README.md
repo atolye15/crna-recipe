@@ -438,6 +438,12 @@ The file `storyLoader.js` that we imported above is an auto-generated file. We s
 storybook/storyLoader.js
 ```
 
+After you install storybook loader, you should run the following command once to avoid typescript errors.
+
+```bash
+yarn rnstl
+```
+
 Update the storybook script into `package.json` as follows:
 
 ```json
@@ -460,7 +466,6 @@ Add the following config into `package.json`:
 ```
 
 > _Warning: If you get typescript errors related with the storybook, you should disable `isolatedModules` in `tsconfig.json`_
-
 
 Lastly, because we use typescript in the project, we need to install the type definition for storybook.
 
