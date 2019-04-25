@@ -48,12 +48,14 @@ react-native init AwesomeProject --template typescript
 
 ## Step 3: Make TypeScript more strict
 
-We want to keep type safety as strict as possibble. In order to do that, we update `tsconfig.json` with the settings below.
+We want to keep type safety as strict as possibble. In order to do that, we update `tsconfig.json` with the settings below. Also we prefer to disable `isolatedModules` and activate `skipLibCheck`.
 
 ```json
 "strict": true,
 "noImplicitAny": true,
 "noImplicitReturns": true,
+"skipLibCheck": true,
+"isolatedModules": false,
 ```
 
 ## Step 4: Installing Prettier
