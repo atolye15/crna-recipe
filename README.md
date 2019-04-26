@@ -582,8 +582,9 @@ yarn rn
 ```json
 // package.json
 
-"rn": "node node_modules/react-native/local-cli/cli.js",
+"rn": "react-native",
 ```
+**NOTE:** Only works with yarn.
 
 ### Run On Aliases
 
