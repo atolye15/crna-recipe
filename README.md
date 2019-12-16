@@ -44,6 +44,12 @@ Use the React Native command line interface to generate a new React Native proje
 react-native init AwesomeProject --template typescript
 ```
 
+veya
+
+```bash
+npx react-native init MyApp --template react-native-template-typescript
+```
+
 > _NOTE: Project name should be alphanumeric!_
 
 ## Step 3: Make TypeScript more strict
