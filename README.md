@@ -399,19 +399,19 @@ You need to update `storybook.ts` as follows:
 
 ```js
 // storybook/storybook.ts
-import React from "react";
+import React from 'react';
 import {
   getStorybookUI,
   configure,
   addDecorator
-} from "@storybook/react-native";
-import { AppRegistry, View, Platform } from "react-native";
+} from '@storybook/react-native';
+import { AppRegistry, View, Platform } from 'react-native';
 
-import { loadStories } from "./storyLoader";
+import { loadStories } from './storyLoader';
 
-import { name as appName } from "../app.json";
+import { name as appName } from '../app.json';
 
-import "./rn-addons";
+import './rn-addons';
 
 // import stories
 configure(() => {
