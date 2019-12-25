@@ -413,21 +413,6 @@ import { name as appName } from "../app.json";
 
 import "./rn-addons";
 
-const iosBarHeight = 20;
-
-addDecorator(storyFn => (
-  <View
-    style={{
-      paddingBottom: 16,
-      backgroundColor: "#f7f7f7",
-      flexGrow: 1,
-      paddingTop: Platform.OS === "ios" ? iosBarHeight + 16 : 16
-    }}
-  >
-    {storyFn()}
-  </View>
-));
-
 // import stories
 configure(() => {
   loadStories();
