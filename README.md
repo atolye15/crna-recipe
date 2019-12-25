@@ -362,21 +362,6 @@ npx -p @storybook/cli sb init --type react_native
 
 > _Warning: Probably after you have run the command above, you'll be asked to select a version. Cancel it._
 
-Storybook CLI automatically installs `v5.0.x`, however `v5.0.x` is an unpublished version for react-native, therefore problems arise during installation. In order to avoid this problem we're going to fix our storybook packages in our `package.json` file to latest stable version `4.1.x`. (Check [this issue](https://github.com/storybooks/storybook/issues/5893) for more information.)
-
-```json
-"@storybook/addon-actions": "^4.1.16",
-"@storybook/addon-links": "^4.1.16",
-"@storybook/addons": "^4.1.16",
-"@storybook/react-native": "^4.1.16",
-```
-
-thereafter in order to activate the changes and update `yarn.lock` file we'll run code below;
-
-```bash
-yarn
-```
-
 After completing steps above you'll notice that storybook CLI have created `storybook` folder on your project's root folder. We'll customize this folder structure according to our use case.
 
 Firstly change the name of `index.js` file in `storybook` folder to `storybook.ts`. Also change file extensions of other files from `js` to `ts`, except the `addons.js` file (https://github.com/storybooks/storybook/issues/3970).
@@ -393,6 +378,17 @@ export default StorybookUI;
 
 We finished the storybook installation but we are not done yet;
 
+### On device addons (optional)
+
+On device addons are addons that are displayed in your app in addons panel. To use them you have to create a file called rn-addons.js in storybook directory. Because React Native does not dynamically resolve imports, you will also have to manually import this file before the getStorybookUI call.
+
+```bash
+yarn add @storybook/addon-ondevice-knobs
+yarn add @storybook/addon-ondevice-notes
+```
+
+### Display StorybookUI in your app
+
 The stories for our app will be inside the `src/components` directory with the `.stories.tsx` extension.The React Native packager resolves all the imports at build-time, so it's not possible to load modules dynamically. we need to use a third party loader [react-native-storybook-loader](https://github.com/elderfo/react-native-storybook-loader) to automatically generate the import statements for all stories.
 
 ```bash
@@ -401,14 +397,19 @@ yarn add react-native-storybook-loader --dev
 
 You need to update `storybook.ts` as follows:
 
-> _Note: Do not forget to replace `%APP_NAME%` with your app name_
-
 ```js
 // storybook/storybook.ts
+import React from 'react';
+import {
+  getStorybookUI,
+  configure,
+  addDecorator
+} from '@storybook/react-native';
+import { AppRegistry, View, Platform } from 'react-native';
 
-import { AppRegistry } from 'react-native';
-import { getStorybookUI, configure } from '@storybook/react-native';
 import { loadStories } from './storyLoader';
+
+import { name as appName } from '../app.json';
 
 import './rn-addons';
 
@@ -423,7 +424,7 @@ const StorybookUIRoot = getStorybookUI({});
 
 // If you are using React Native vanilla write your app name here.
 // If you use Expo you can safely remove this line.
-AppRegistry.registerComponent('%APP_NAME%', () => StorybookUIRoot);
+AppRegistry.registerComponent(appName, () => StorybookUIRoot);
 
 export default StorybookUIRoot;
 ```
