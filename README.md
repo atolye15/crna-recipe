@@ -386,7 +386,7 @@ After that, we create a new file named `index.ts` to expose StorybookUI in your 
 ```js
 // storybook/index.ts
 
-import StorybookUI from './storybook';
+import StorybookUI from 'storybook';
 
 export default StorybookUI;
 ```
