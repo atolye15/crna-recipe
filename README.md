@@ -41,7 +41,12 @@ yarn global add react-native-cli
 Use the React Native command line interface to generate a new React Native project called "AwesomeProject":
 
 ```bash
-react-native init AwesomeProject --template typescript
+npx react-native init MyApp --template react-native-template-typescript
+```
+
+If you getting an error, you should try this:
+```bash
+npx --ignore-existing react-native init MyApp --template react-native-template-typescript 
 ```
 
 > _NOTE: Project name should be alphanumeric!_
